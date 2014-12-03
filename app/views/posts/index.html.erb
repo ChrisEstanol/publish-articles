@@ -1,0 +1,17 @@
+<h1>My blog</h1>
+
+<%= link_to 'New post', new_post_path %>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Content</th>
+  </tr>
+
+  <% @posts.each do |post| %>
+    <tr>
+      <td><%= post.title %></td>
+      <td><%= post.author %></td>
+      <td><%= post.published %></td>
+    </tr>
+  <% end %>
+</table>
