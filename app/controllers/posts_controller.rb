@@ -12,7 +12,14 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params[:id])
+    @post = Post.new(allowed_params)
+    # @post.title = params[:post][:title]
+    # @post.published = params[:post][:published]
+    # @post.author = params[:post][:author]
+    # @post.content = params[:post][:content]
+    # This is equivalent to using rails c and entering
+    # parameters manualy
+
     if @post.save
       redirect_to @post, notice: 'Post was successfully created.'
     else
@@ -25,7 +32,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update(params[:id])
+    if @post.update(allowed_params)
       redirect_to @post, notice: 'Post was successfully updated.'
     else
       render action: 'edit'
@@ -33,8 +40,12 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.destroy(params[:id])
-    redirect_to @post, notice: 'Post was successfully deleted.'
+    @post.destroy
+    redirect_to posts_url, notice: 'Post was successfully deleted.'
+  end
+
+  def allowed_params
+    params.require(:post).permit([:title, :author, :content, :published])
   end
 
 end
