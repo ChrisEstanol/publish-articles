@@ -1,6 +1,10 @@
+<% if notice != nil  %>
+  <p id="notice" class="alert alert-success" ><%= notice %></p>
+<% end %>
+
 <h1>My blog</h1>
 
-<table class="table table-hover table-condensed" id="post_table">
+<table class="table table-hover table-condensed">
   <thead>
     <tr>
       <th>Title</th>
@@ -9,22 +13,21 @@
       <th>Content</th>
     </tr>
   </thead>
-  <tbody id= "addPost">
+  <tbody id="addPost">
   <% @posts.each do |post| %>
-  <tr id = <%= post.id %>>
+  <tr id="<%= post.id %>">
   <td><%= post.title %></td>
   <td><%= post.author %></td>
   <td><%= post.published %></td>
   <td><%= post.content %></td>
   <td><%= link_to 'Show', post %></td>
-  <td><%= link_to 'Edit', edit_post_path(post) %></td>
+  <td><%= link_to 'Edit', edit_post_path(post), remote: true %></td>
   <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure you want to delete this post?' } %></td>
   <% end %>
   </tr>
   </tbody>
 </table>
 
-<%# Added Bootstrap data modal attribute %>
 <%= link_to 'New post', new_post_path, remote: true, class: "btn btn-success"%>
 
 
