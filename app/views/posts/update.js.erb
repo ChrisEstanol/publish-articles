@@ -1,0 +1,14 @@
+<% if @post.errors.any? %>
+  alert('Verifique campos requeridos')
+  <% @post.errors.full_messages.each do |msg| %>
+    alert('<%= msg %>');
+  <% end %>
+<% else %>
+
+
+
+  $('#<%= @post.id %>').html('<%=j render "table_row"%>');
+
+  // $('#update').show();
+
+<%end%>
