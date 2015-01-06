@@ -1,0 +1,28 @@
+
+<%= form_for(@post, remote: true) do |f| %>
+
+  <div class="field">
+    <%= f.label :title, class: 'control-label' %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :author, class: 'control-label' %><br>
+    <%= f.text_field :author %>
+  </div>
+  <div class="field">
+    <%= f.label :published, class: 'control-label' %><br>
+    <%= f.check_box :published %>
+  </div>
+  <div class="field">
+    <%= f.label :content, class: 'control-label' %><br>
+    <%= f.text_area :content %>
+  </div>
+  <div>
+  <% if current_page?(:action => 'new') %>
+    <%= f.submit "Create post" ,class: "btn btn-success"%>
+    <% else %>
+    <%= f.submit "Modify the post" ,class: "btn btn-success" %>
+    <% end %>
+  </div>
+<% end %>
+
